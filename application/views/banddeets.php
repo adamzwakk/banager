@@ -1,6 +1,6 @@
 <div class="bandInfoLeft">
-	<img src="img/bands/<?php echo $band->image; ?>" />
-	<table>
+	<img src="img/bands/<?php echo $band->image; ?>" style="width:290px;" />
+	<table class="table table-striped" style="margin-top: 10px;">
 
 	</table>
 </div>
@@ -25,7 +25,7 @@
 			</tr>
 			<tr>
 				<td><strong>Local/Touring: </strong></td>
-				<td>Local: <?php echo form_radio('localtouring', 'touring', (!$band->localtouring) ? TRUE : FALSE); ?> Touring: <?php echo form_radio('localtouring', 'local', ($band->localtouring) ? TRUE : FALSE); ?></td>
+				<td>Local: <?php echo form_radio('localtouring', 'touring', (!$band->localtouring) ? TRUE : FALSE); ?>Touring: <?php echo form_radio('localtouring', 'local', ($band->localtouring) ? TRUE : FALSE); ?></td>
 			</tr>
 			<tr>
 				<td><strong>Tags: </strong></td>

@@ -102,13 +102,20 @@
 			<?php foreach($genres as $genre){ ?>
 				<a href="#" class="btn btn-info genreSelect" data-genre="<?php echo strtolower($genre->genre); ?>"><?php echo $genre->genre; ?></a>
 			<?php } ?>
+			<div class="bandFunctions"> Functions: <a href="#" class="addBand btn btn-success">Add Band</a></div>
 		</div>
 		<br/>
 		<div class="bandList">
 			<?php foreach($bands as $band){ ?>
 				<div class="element <?php echo strtolower($band->name); ?> <?php if($band->tags != ''){ echo $band->tags; } ?> <?php if($band->localtouring == 0){ echo 'local'; } else { echo 'touring'; } ?> <?php echo strtolower($band->genre); ?>">
-					<a href="#" class="bandClick" data-id="<?php echo $band->id; ?>"><?php echo $band->name; ?>
-					<?php if(!is_null($band->lastdate)) { ?><span class="lastShow">Last show: <?php echo date('M j Y',strtotime($band->lastdate)); ?></span> <?php } ?></a>
+					<a href="#" class="bandClick" data-id="<?php echo $band->id; ?>">
+						<?php echo $band->name; ?></td>
+						<span class="miniInfo">
+							<?php if(!is_null($band->lastdate)) { ?><strong>Last show: </strong><?php echo date('M jS',strtotime($band->lastdate)).' ('.when(strtotime($band->lastdate)).')'; ?><br/><?php } ?>
+							<?php if($band->soundslike != ''){ ?><strong>Sounds Like: </strong><?php echo $band->soundslike; ?><br/><?php } ?>
+							<?php if($band->homies != ''){ ?><strong>Homies: </strong><?php echo $band->homies; ?><br/><?php } ?>
+						</span>
+					</a>
 				</div>
 			<?php } ?>
 		</div>
