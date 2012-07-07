@@ -10,4 +10,10 @@ class Band_model extends CI_Model {
 		$q = $this->db->get('bands');
 		return $q->result();
 	}
+
+	function getBandByID($bID){
+		$this->db->where('id',$bID);
+		$q = $this->db->get('bands');
+		return $q->row();
+	}
 }

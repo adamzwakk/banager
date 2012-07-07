@@ -7,6 +7,11 @@
   border-radius:4px;
 }
 
+.element .bandClick{
+  float:left;
+  width: 95%;
+}
+
 .bandShortInfo{
 	height:100px;
 	background-color:#000;
@@ -21,6 +26,10 @@
 	float:right;
 	width:600px;
 	margin-top:10px;
+}
+
+.bandInfoLeft{
+  float:left;
 }
 
 .large{
@@ -70,3 +79,6 @@
           transition-duration: 0s;
 }
 
+.clear{
+  clear:both;
+}

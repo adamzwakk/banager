@@ -9,7 +9,7 @@ class Bands extends CI_Controller {
 
 	public function index(){
 		$this->data['bands'] = $this->band_model->getBands();
-		$this->load->view('main',$this->data);
+		$this->load->view('slim',$this->data);
 	}
 
 	public function getShows($bID){
@@ -18,9 +18,9 @@ class Bands extends CI_Controller {
 		$this->load->view('shows',$this->data);
 	}
 
-	public function slim(){
-		$this->data['bands'] = $this->band_model->getBands();
-		$this->load->view('slim/slim.php',$this->data);
+	public function getBandInfo($bID){
+		$this->data['band'] = $this->band_model->getBandByID($bID);
+		$this->data['bID'] = $bID;
+		$this->load->view('banddeets',$this->data);
 	}
-
 }

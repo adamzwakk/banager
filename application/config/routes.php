@@ -38,7 +38,7 @@
 |
 */
 
-$route['default_controller'] = "bands/slim";
+$route['default_controller'] = "bands";
 $route['404_override'] = '';
 
 
