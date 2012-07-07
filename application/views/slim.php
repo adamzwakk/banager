@@ -17,7 +17,12 @@
 
 			$('form[name="searchF"]').submit(function(event){
 				event.preventDefault();
-				filterBands($('input[name="search"]').val());
+				if($('input[name="search"]').val().substring(0,10) == 'soundslike'){
+					console.log('soundslike');
+				} else {
+					tags = filterBands($('input[name="search"]').val());
+				}
+				$('.bandList').isotope({filter: tags});
 			});
 
 			function filterBands(search){
@@ -31,7 +36,7 @@
 				} else {
 					var tags = "*";
 				}
-				$('.bandList').isotope({filter: tags});
+				return tags;
 			}
 
 			$('.localBand').click(function(event){
@@ -91,7 +96,7 @@
 		<div class="header">
 			<h1><a href="<?php echo site_url(); ?>">Banager!</a></h1>
 			<form name="searchF" class="form-search">
-				<input type="text" name="search" class="span10 input-xlarge" placeholder="Search by tag..." />
+				<input type="text" name="search" class="span11 input-xlarge" placeholder="Search by name/genre/tag..." />
 				<input type="submit" name="searchsub" class="btn" value="Search!" ?>
 			</form>
 			Location: <a href="#" class="btn btn-info allBands">All</a><a href="#" class="btn btn-info localBand">Local</a><a href="#" class="btn btn-info touringBand">Touring</a>
@@ -100,9 +105,11 @@
 				<a href="#" class="btn btn-info genreSelect" data-genre="<?php echo strtolower($genre->genre); ?>"><?php echo $genre->genre; ?></a>
 			<?php } ?>
 		</div>
+		<br/>
 		<div class="bandList">
 			<?php foreach($bands as $band){ ?>
-				<div class="element <?php echo strtolower($band->name); ?> <?php if($band->tags != ''){ echo $band->tags; } ?> <?php if($band->localtouring == 0){ echo 'local'; } else { echo 'touring'; } ?> <?php echo strtolower($band->genre); ?>">
+			<?php $soundslike = $band->soundslike; ?>
+				<div class="element <?php echo strtolower($band->name); ?> <?php if($band->tags != ''){ echo $band->tags; } ?> <?php if($band->localtouring == 0){ echo 'local'; } else { echo 'touring'; } ?> <?php echo strtolower($band->genre); ?>" data-soundslike="<?php echo $soundslike; ?>">
 					<a href="#" class="bandClick" data-id="<?php echo $band->id; ?>"><?php echo $band->name; ?>
 					<?php if(!is_null($band->lastdate)) { ?><span class="lastShow">Last show: <?php echo date('M j Y',strtotime($band->lastdate)); ?></span> <?php } ?></a>
 				</div>
