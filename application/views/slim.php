@@ -17,11 +17,7 @@
 
 			$('form[name="searchF"]').submit(function(event){
 				event.preventDefault();
-				if($('input[name="search"]').val().substring(0,10) == 'soundslike'){
-					console.log('soundslike');
-				} else {
-					tags = filterBands($('input[name="search"]').val());
-				}
+				var tags = filterBands($('input[name="search"]').val());
 				$('.bandList').isotope({filter: tags});
 			});
 
@@ -75,15 +71,17 @@
 					$(this).removeClass('open');
 					thisbandInfo.remove();
 				} else {
+					$('.bandClick').parent().removeClass('large');
+					$('.bandClick').removeClass('open');
+					$('.bandClick').siblings('.bandLargeInfo, .bandInfoLeft').remove();
+					$(this).parent().addClass('large');
+					$(this).addClass('open');
 					$.ajax({
 						url: "<?php echo site_url(); ?>/bands/getBandInfo/"+bandID
 						}).done(function(msg) {
 							element.append(msg);
 					});
 					var thisbandInfo = $(this).siblings('.bandLargeInfo');
-					$(this).parent().addClass('large');
-					$(this).addClass('open');
-					
 				}
 				$('.bandList').isotope('reLayout');
 			});
@@ -108,8 +106,7 @@
 		<br/>
 		<div class="bandList">
 			<?php foreach($bands as $band){ ?>
-			<?php $soundslike = $band->soundslike; ?>
-				<div class="element <?php echo strtolower($band->name); ?> <?php if($band->tags != ''){ echo $band->tags; } ?> <?php if($band->localtouring == 0){ echo 'local'; } else { echo 'touring'; } ?> <?php echo strtolower($band->genre); ?>" data-soundslike="<?php echo $soundslike; ?>">
+				<div class="element <?php echo strtolower($band->name); ?> <?php if($band->tags != ''){ echo $band->tags; } ?> <?php if($band->localtouring == 0){ echo 'local'; } else { echo 'touring'; } ?> <?php echo strtolower($band->genre); ?>">
 					<a href="#" class="bandClick" data-id="<?php echo $band->id; ?>"><?php echo $band->name; ?>
 					<?php if(!is_null($band->lastdate)) { ?><span class="lastShow">Last show: <?php echo date('M j Y',strtotime($band->lastdate)); ?></span> <?php } ?></a>
 				</div>
