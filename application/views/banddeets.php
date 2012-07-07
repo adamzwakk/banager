@@ -1,30 +1,62 @@
 <div class="bandInfoLeft">
 	<img src="img/bands/<?php echo $band->image; ?>" />
+	<table>
+
+	</table>
 </div>
 <div class="bandLargeInfo" style="overflow:hidden;">
 	<form>
 		<table>
 			<tr>
-				<td>Name: </td>
-				<td><input type="text" name="name" class="span6" <?php if($band->name != ''){ echo 'value="'.$band->name.'"'; } ?>></td>
+				<td><strong>Name: </strong></td>
+				<td><?php echo form_input(array('name'=>'name','value'=>$band->name, 'class'=>'span6')); ?></td>
 			</tr>
 			<tr>
-				<td>Email: </td>
-				<td><input type="text" name="email" class="span6" <?php if($band->email != ''){ echo 'value="'.$band->email.'"'; } ?>></td>
+				<td><strong>Email: </strong></td>
+				<td><?php echo form_input(array('name'=>'email','value'=>$band->email, 'class'=>'span6')); ?></td>
 			</tr>
 			<tr>
-				<td>Phone: </td>
-				<td><input type="text" name="phone" class="span6" <?php if($band->phone != ''){ echo 'value="'.$band->phone.'"'; } ?>></td>
+				<td><strong>Phone: </strong></td>
+				<td><?php echo form_input(array('name'=>'phone','value'=>$band->phone, 'class'=>'span6')); ?></td>
 			</tr>
 			<tr>
-				<td>Tags</td>
-				<td><input type="text" name="tags" class="span6" <?php if($band->tags != ''){ echo 'value="'.$band->tags; } ?> /></td>
+				<td><strong>Genre: </strong></td>
+				<td><?php echo form_input(array('name'=>'genre','value'=>$band->genre, 'class'=>'span6')); ?></td>
 			</tr>
-			<tr class="shows">
+			<tr>
+				<td><strong>Local/Touring: </strong></td>
+				<td>Local: <?php echo form_radio('localtouring', 'touring', (!$band->localtouring) ? TRUE : FALSE); ?> Touring: <?php echo form_radio('localtouring', 'local', ($band->localtouring) ? TRUE : FALSE); ?></td>
+			</tr>
+			<tr>
+				<td><strong>Tags: </strong></td>
+				<td><?php echo form_input(array('name'=>'tags','value'=>$band->tags, 'class'=>'span6')); ?></td>
+			</tr>
+			<tr>
+				<td><strong>Sounds Like: </strong></td>
+				<td><?php echo form_input(array('name'=>'soundslike','value'=>$band->soundslike, 'class'=>'span6')); ?></td>
+			</tr>
+			<tr>
+				<td><strong>Homies: </strong></td>
+				<td><?php echo form_input(array('name'=>'homies','value'=>$band->homies, 'class'=>'span6')); ?></td>
+			</tr>
+			<tr>
+				<td><strong>Notes: </strong></td>
+				<td><?php echo form_textarea(array('name'=>'notes','value'=>$band->notes, 'class'=>'span6')); ?></td>
+			</tr>
+			<tr>
 				<td></td>
-				<td></td>
+				<td><input type="submit" class="btn" value="EDIT" style="float:right;" /></td>
 			</tr>
 		</table>
 	</form>
 </div>
 <div class="clear"></div>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$.ajax({
+			url: "<?php echo site_url(); ?>/bands/getShows/<?php echo $band->id; ?>"
+			}).done(function(msg) {
+				$('.bandInfoLeft table').html(msg);
+		});
+	});
+</script>

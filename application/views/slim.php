@@ -27,12 +27,11 @@
 					for(x in tags){
 						newtags.push('.'+tags[x]);
 					}
-					tags = newtags;
+					tags = newtags.join();
 				} else {
 					var tags = "*";
 				}
-				console.log(tags);
-				$('.bandList').isotope({filter: tags.join()});
+				$('.bandList').isotope({filter: tags});
 			}
 
 			$('.localBand').click(function(event){
@@ -45,7 +44,24 @@
 				$('.bandList').isotope({filter: '.touring'});
 			});
 
+			$('.allBands').click(function(event){
+				event.preventDefault();
+				$('.bandList').isotope({filter: '*'});
+			});
+
+			$('.genreSelect').click(function(event){
+				event.preventDefault()
+				var tags = $(this).attr('data-genre').split(' ');
+				var newtags = [];
+				for(x in tags){
+					newtags.push('.'+tags[x]);
+				}
+				tags = newtags.join();
+				$('.bandList').isotope({filter: tags});
+			});
+
 			$('.bandClick').click(function(){
+				var element = $(this).parent();
 				var thisband = $(this);
 				var bandID = $(this).attr('data-id');
 				if($(this).hasClass('open')){
@@ -57,17 +73,12 @@
 					$.ajax({
 						url: "<?php echo site_url(); ?>/bands/getBandInfo/"+bandID
 						}).done(function(msg) {
-							console.log(thisband);
-							thisband.after(msg);
+							element.append(msg);
 					});
 					var thisbandInfo = $(this).siblings('.bandLargeInfo');
 					$(this).parent().addClass('large');
 					$(this).addClass('open');
-					$.ajax({
-						url: "<?php echo site_url(); ?>/bands/getShows/"+bandID
-						}).done(function(msg) {
-							thisbandInfo.find('.shows').after(msg);
-					});
+					
 				}
 				$('.bandList').isotope('reLayout');
 			});
@@ -83,12 +94,15 @@
 				<input type="text" name="search" class="span10 input-xlarge" placeholder="Search by tag..." />
 				<input type="submit" name="searchsub" class="btn" value="Search!" ?>
 			</form>
-			<a href="#" class="btn btn-info localBand">Local</a><a href="#" class="btn btn-info touringBand">Touring</a>
+			Location: <a href="#" class="btn btn-info allBands">All</a><a href="#" class="btn btn-info localBand">Local</a><a href="#" class="btn btn-info touringBand">Touring</a>
+			Genres: 
+			<?php foreach($genres as $genre){ ?>
+				<a href="#" class="btn btn-info genreSelect" data-genre="<?php echo strtolower($genre->genre); ?>"><?php echo $genre->genre; ?></a>
+			<?php } ?>
 		</div>
 		<div class="bandList">
 			<?php foreach($bands as $band){ ?>
-				<?php $bandname = strtolower($band->name); ?>
-				<div class="element <?php echo $bandname; ?> <?php if($band->tags != ''){ echo $band->tags; } ?> <?php if($band->localtouring == 0){ echo 'local'; } else { echo 'touring'; } ?>">
+				<div class="element <?php echo strtolower($band->name); ?> <?php if($band->tags != ''){ echo $band->tags; } ?> <?php if($band->localtouring == 0){ echo 'local'; } else { echo 'touring'; } ?> <?php echo strtolower($band->genre); ?>">
 					<a href="#" class="bandClick" data-id="<?php echo $band->id; ?>"><?php echo $band->name; ?>
 					<?php if(!is_null($band->lastdate)) { ?><span class="lastShow">Last show: <?php echo date('M j Y',strtotime($band->lastdate)); ?></span> <?php } ?></a>
 				</div>

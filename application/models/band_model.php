@@ -16,4 +16,9 @@ class Band_model extends CI_Model {
 		$q = $this->db->get('bands');
 		return $q->row();
 	}
+
+	function getGenres(){
+		$q = $this->db->query('SELECT DISTINCT genre FROM bands');
+		return $q->result();
+	}
 }

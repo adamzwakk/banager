@@ -9,6 +9,7 @@ class Bands extends CI_Controller {
 
 	public function index(){
 		$this->data['bands'] = $this->band_model->getBands();
+		$this->data['genres'] = $this->band_model->getGenres();
 		$this->load->view('slim',$this->data);
 	}
 

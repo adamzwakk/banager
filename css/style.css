@@ -30,11 +30,12 @@
 
 .bandInfoLeft{
   float:left;
+  width: 320px;
 }
 
 .large{
 	width:922px !important;
-	height:350px !important;
+	height:575px !important;
 }
 
 .lastShow{
