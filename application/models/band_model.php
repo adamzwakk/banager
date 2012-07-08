@@ -21,4 +21,21 @@ class Band_model extends CI_Model {
 		$q = $this->db->query('SELECT DISTINCT genre FROM bands');
 		return $q->result();
 	}
+
+	function update(){
+		$data = array(
+			'name' => $this->input->post('name'),
+			'email' => $this->input->post('email'),
+			'phone' => $this->input->post('phone'),
+			'genre' => $this->input->post('genre'),
+			'tags' => $this->input->post('tags'),
+			'soundslike' => $this->input->post('soundslike'),
+			'homies' => $this->input->post('homies'),
+			'notes' => $this->input->post('notes')
+		);
+		$data['localtouring'] = ($this->input->post('localtouring') == 'touring') ? 1 : 0;
+
+		$this->db->where('id', $this->input->post('bID'));
+		$this->db->update('bands', $data);
+	}
 }

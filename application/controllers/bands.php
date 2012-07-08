@@ -24,4 +24,9 @@ class Bands extends CI_Controller {
 		$this->data['bID'] = $bID;
 		$this->load->view('banddeets',$this->data);
 	}
+
+	public function updateBand(){
+		$this->band_model->update();
+		header("Location: ".site_url('bands'));
+	}
 }

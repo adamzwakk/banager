@@ -5,7 +5,7 @@
 	</table>
 </div>
 <div class="bandLargeInfo" style="overflow:hidden;">
-	<form>
+	<?php echo form_open('bands/updateBand'); ?>
 		<table>
 			<tr>
 				<td><strong>Name: </strong></td>
@@ -25,7 +25,7 @@
 			</tr>
 			<tr>
 				<td><strong>Local/Touring: </strong></td>
-				<td>Local: <?php echo form_radio('localtouring', 'touring', (!$band->localtouring) ? TRUE : FALSE); ?>Touring: <?php echo form_radio('localtouring', 'local', ($band->localtouring) ? TRUE : FALSE); ?></td>
+				<td>Local: <?php echo form_radio('localtouring', 'local', (!$band->localtouring) ? TRUE : FALSE); ?>Touring: <?php echo form_radio('localtouring', 'touring', ($band->localtouring) ? TRUE : FALSE); ?></td>
 			</tr>
 			<tr>
 				<td><strong>Tags: </strong></td>
@@ -44,7 +44,7 @@
 				<td><?php echo form_textarea(array('name'=>'notes','value'=>$band->notes, 'class'=>'span6')); ?></td>
 			</tr>
 			<tr>
-				<td></td>
+				<td><input type="hidden" name="bID" value="<?php echo $band->id; ?>"></td>
 				<td><input type="submit" class="btn" value="EDIT" style="float:right;" /></td>
 			</tr>
 		</table>
