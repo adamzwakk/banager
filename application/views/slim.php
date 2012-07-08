@@ -102,7 +102,7 @@
 			<?php foreach($genres as $genre){ ?>
 				<a href="#" class="btn btn-info genreSelect" data-genre="<?php echo strtolower($genre->genre); ?>"><?php echo $genre->genre; ?></a>
 			<?php } ?>
-			<div class="bandFunctions"> Functions: <a href="#" class="addBand btn btn-success">Add Band</a></div>
+			<div class="bandFunctions"> Functions: <a href="<?php echo site_url('bands/addBand'); ?>" class="addBand btn btn-success">Add Band</a></div>
 		</div>
 		<br/>
 		<div class="bandList">

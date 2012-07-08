@@ -4,7 +4,6 @@ class Bands extends CI_Controller {
 
 	public function __construct(){
 	   parent::__construct();
-
 	}
 
 	public function index(){
@@ -23,6 +22,36 @@ class Bands extends CI_Controller {
 		$this->data['band'] = $this->band_model->getBandByID($bID);
 		$this->data['bID'] = $bID;
 		$this->load->view('banddeets',$this->data);
+	}
+
+	public function addBand(){
+		$this->load->view('add_band');
+	}
+
+	public function addBand2(){
+		$config['upload_path'] = './img/bands/';
+		$config['allowed_types'] = 'gif|jpg|png';
+		$this->load->library('upload', $config);
+
+		if ($this->upload->do_upload('bandImg')){
+			$udata = $this->upload->data();
+			$data = array(
+				'name' => $this->input->post('name'),
+				'email' => $this->input->post('email'),
+				'phone' => $this->input->post('phone'),
+				'genre' => $this->input->post('genre'),
+				'tags' => $this->input->post('tags'),
+				'soundslike' => $this->input->post('soundslike'),
+				'homies' => $this->input->post('homies'),
+				'notes' => $this->input->post('notes'),
+				'image' => $udata['file_name']
+			);
+			$data['localtouring'] = ($this->input->post('localtouring') == 'touring') ? 1 : 0;
+			$this->band_model->insert($data);
+			header("Location: ".site_url('bands'));
+		} else {
+			echo 'Whoops: '.$this->upload->display_errors();
+		}
 	}
 
 	public function updateBand(){

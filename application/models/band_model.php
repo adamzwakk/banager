@@ -38,4 +38,9 @@ class Band_model extends CI_Model {
 		$this->db->where('id', $this->input->post('bID'));
 		$this->db->update('bands', $data);
 	}
+
+	function insert($data){
+		
+		$this->db->insert('bands', $data);
+	}
 }
