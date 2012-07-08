@@ -54,6 +54,17 @@ class Bands extends CI_Controller {
 		}
 	}
 
+	public function addShow(){
+		$this->data['bands'] = $this->band_model->getBands();
+		$this->data['venues'] = $this->show_model->getVenues();
+		$this->load->view('add_show',$this->data);
+	}
+
+	public function addShow2(){
+		$this->show_model->insert();
+		header("Location: ".site_url('bands'));
+	}
+
 	public function updateBand(){
 		$this->band_model->update();
 		header("Location: ".site_url('bands'));

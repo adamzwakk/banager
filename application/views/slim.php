@@ -97,12 +97,12 @@
 				<input type="text" name="search" class="span11 input-xlarge" placeholder="Search by name/genre/tag..." />
 				<input type="submit" name="searchsub" class="btn" value="Search!" ?>
 			</form>
-			Location: <a href="#" class="btn btn-info allBands">All</a><a href="#" class="btn btn-info localBand">Local</a><a href="#" class="btn btn-info touringBand">Touring</a>
+			Location: <a href="#" class="btn btn-info allBands">All</a> <a href="#" class="btn btn-info localBand">Local</a> <a href="#" class="btn btn-info touringBand">Touring</a>
 			Genres: 
 			<?php foreach($genres as $genre){ ?>
 				<a href="#" class="btn btn-info genreSelect" data-genre="<?php echo strtolower($genre->genre); ?>"><?php echo $genre->genre; ?></a>
 			<?php } ?>
-			<div class="bandFunctions"> Functions: <a href="<?php echo site_url('bands/addBand'); ?>" class="addBand btn btn-success">Add Band</a></div>
+			<div class="bandFunctions"> Functions: <a href="<?php echo site_url('bands/addBand'); ?>" class="addBand btn btn-success">Add Band</a> <a href="<?php echo site_url('bands/addShow'); ?>" class="addShow btn btn-success">Add Show</a></div>
 		</div>
 		<br/>
 		<div class="bandList">

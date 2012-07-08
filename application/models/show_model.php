@@ -11,4 +11,22 @@ class Show_model extends CI_Model {
 		$q = $this->db->get('shows');
 		return $q->result();
 	}
+
+	function getVenues(){
+		$q = $this->db->get('venues');
+		return $q->result();
+	}
+
+	function insert(){
+		$data = array(
+			'date' => $this->input->post('date'),
+			'venue' => $this->input->post('venue')
+		);
+		$this->db->insert('shows', $data);
+		$sID = $this->db->insert_id();
+
+		foreach( $this->input->post('band') as $band){
+			$this->db->insert('shows_bands', array('show_id'=>$sID,'band_id'=>$band)); 
+		}
+	}
 }
