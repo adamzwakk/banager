@@ -43,4 +43,12 @@ class Band_model extends CI_Model {
 		
 		$this->db->insert('bands', $data);
 	}
+
+	function delete($id){
+		$this->db->where('id', $id);
+		$this->db->delete('bands');
+
+		$this->db->where('band_id', $id);
+		$this->db->delete('shows_bands');
+	}
 }

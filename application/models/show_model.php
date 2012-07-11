@@ -17,6 +17,16 @@ class Show_model extends CI_Model {
 		return $q->result();
 	}
 
+	function getAllShows(){
+		$q = $this->db->get('shows');
+		return $q->result();
+	}
+
+	function getMostPopularBand(){
+		$q = $this->db->query('SELECT COUNT(*) AS Rows, band_id, bands.name FROM shows_bands LEFT JOIN bands ON bands.id = shows_bands.band_id GROUP BY band_id ORDER BY Rows DESC LIMIT 1');
+		return $q->row();
+	}
+
 	function insert(){
 		$data = array(
 			'date' => $this->input->post('date'),

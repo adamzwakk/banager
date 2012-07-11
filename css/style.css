@@ -46,6 +46,15 @@ padding-left: 5px;
 	height:615px !important;
 }
 
+.bandList{
+  margin-bottom: 10px;
+}
+
+#stats{
+  text-align: center;
+  margin-bottom: 10px;
+}
+
 .isotope,
 .isotope .isotope-item {
   /* change duration value to whatever you like */
@@ -83,6 +92,14 @@ padding-left: 5px;
        -o-transition-duration: 0s;
           transition-duration: 0s;
 }
+
+.ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
+.ui-timepicker-div dl { text-align: left; }
+.ui-timepicker-div dl dt { height: 25px; margin-bottom: -25px; }
+.ui-timepicker-div dl dd { margin: 0 10px 10px 65px; }
+.ui-timepicker-div td { font-size: 90%; }
+.ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
+
 
 .clear{
   clear:both;

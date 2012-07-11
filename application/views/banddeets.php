@@ -45,7 +45,7 @@
 			</tr>
 			<tr>
 				<td><input type="hidden" name="bID" value="<?php echo $band->id; ?>"></td>
-				<td><input type="submit" class="btn" value="EDIT" style="float:right;" /></td>
+				<td><input type="submit" class="btn" value="EDIT" style="float:right;" /><a href="<?php echo site_url('bands/delete/'.$band->id); ?>" class="btn btn-danger">Delete :(</a></td>
 			</tr>
 		</table>
 	</form>

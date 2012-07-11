@@ -9,6 +9,8 @@ class Bands extends CI_Controller {
 	public function index(){
 		$this->data['bands'] = $this->band_model->getBands();
 		$this->data['genres'] = $this->band_model->getGenres();
+		$this->data['shows'] = $this->show_model->getAllShows();
+		$this->data['mostpopular'] = $this->show_model->getMostPopularBand();
 		$this->load->view('slim',$this->data);
 	}
 
@@ -68,5 +70,9 @@ class Bands extends CI_Controller {
 	public function updateBand(){
 		$this->band_model->update();
 		header("Location: ".site_url('bands'));
+	}
+
+	public function delete($id){
+		$this->band_model->delete($id);
 	}
 }

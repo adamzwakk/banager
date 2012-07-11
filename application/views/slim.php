@@ -119,6 +119,10 @@
 				</div>
 			<?php } ?>
 		</div>
+		<div id="stats">
+			<strong>Total Bands:</strong> <?php echo count($bands); ?> <strong>Total Shows:</strong> <?php echo count($shows); ?> <strong>Most Popular Band:</strong> <?php echo $mostpopular->name; ?><br/>
+			Email <a href="mailto:shamist@gmail.com">this dude</a> if you have any problems
+		</div>
 	</div>
 </body>
 </html>
