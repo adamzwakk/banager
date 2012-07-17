@@ -45,6 +45,9 @@ class Bands extends CI_Controller {
 				'tags' => $this->input->post('tags'),
 				'soundslike' => $this->input->post('soundslike'),
 				'homies' => $this->input->post('homies'),
+				'location' => $this->input->post('location'),
+				'bandcamp' => $this->input->post('bandcamp'),
+				'website' => $this->input->post('website'),
 				'notes' => $this->input->post('notes'),
 				'image' => $udata['file_name']
 			);

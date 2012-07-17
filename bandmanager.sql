@@ -1,32 +1,25 @@
--- phpMyAdmin SQL Dump
--- version 3.4.5
--- http://www.phpmyadmin.net
---
--- Host: localhost
--- Generation Time: Jul 07, 2012 at 04:25 AM
--- Server version: 5.5.16
--- PHP Version: 5.3.8
+/*
+Navicat MySQL Data Transfer
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
+Source Server         : LOCALHOST
+Source Server Version : 50520
+Source Host           : localhost:3306
+Source Database       : banager
 
+Target Server Type    : MYSQL
+Target Server Version : 50520
+File Encoding         : 65001
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+Date: 2012-07-17 17:48:42
+*/
 
---
--- Database: `bandmanager`
---
+SET FOREIGN_KEY_CHECKS=0;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `bands`
---
-
-CREATE TABLE IF NOT EXISTS `bands` (
+-- ----------------------------
+-- Table structure for `bands`
+-- ----------------------------
+DROP TABLE IF EXISTS `bands`;
+CREATE TABLE `bands` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(200) DEFAULT NULL,
   `image` varchar(200) DEFAULT NULL,
@@ -39,99 +32,86 @@ CREATE TABLE IF NOT EXISTS `bands` (
   `homies` text,
   `notes` text,
   `lastcontact` date NOT NULL,
+  `location` varchar(50) NOT NULL DEFAULT 'London',
+  `bandcamp` varchar(200) DEFAULT NULL,
+  `website` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `bands`
---
+-- ----------------------------
+-- Records of bands
+-- ----------------------------
+INSERT INTO `bands` VALUES ('8', 'Single Mothers', 'SingleMothers.jpg', 'fake@fake.com', '000-0000', 'Punk', '', '0', 'unknown', 'TV Freaks, Touché Amoré, Teenage Kicks', 'Availability: Unknown\r\nPrevious Deals: $250\r\nDraw: 100, 150', '2012-07-01', 'London', null, null);
+INSERT INTO `bands` VALUES ('9', 'The Dirty Nil', 'TheDirtyNil.jpg', 'fake@fake.com', '000-0000', 'Rock and Roll', null, '1', 'Weezer', 'Single Mothers', 'Availability: Any\r\nPrevious Deals: $50\r\nDraw: 30', '2012-06-19', 'London', null, null);
+INSERT INTO `bands` VALUES ('10', 'TV Freaks', 'TVFreaks.jpg', 'fake@fake.com', '000-0000', 'Punk', null, '1', 'unknown', 'Single Mothers', 'Availability: Unknown\r\nPrevious Deals: $225\r\nDraw: 100', '2012-06-01', 'London', null, null);
+INSERT INTO `bands` VALUES ('11', 'Teenage Kicks', 'TeenageKicks.jpg', 'fake@fake.com', '000-0000', 'Rock and Roll', null, '1', 'Creedence Clearwater Revival', 'The Balconies', 'Availability: Unknown\r\nPrevious Deals: $200 + 50%, $200\r\nDraw: 75', '2012-06-01', 'London', null, null);
+INSERT INTO `bands` VALUES ('12', 'METZ', 'Metz.jpg', 'fake@fake.com', '000-0000', 'Punk', '', '1', 'unknown', '', 'Availability: Unknown\r\nPrevious Deals: None', '2012-07-01', 'London', '', '');
 
-INSERT INTO `bands` (`id`, `name`, `image`, `email`, `phone`, `genre`, `tags`, `localtouring`, `soundslike`, `homies`, `notes`, `lastcontact`) VALUES
-(8, 'Single Mothers', 'SingleMothers.jpg', 'fake@fake.com', '000-0000', 'Punk', '', 0, 'unknown', 'TV Freaks, Touché Amoré, Teenage Kicks', 'Availability: Unknown\r\nPrevious Deals: $250\r\nDraw: 100, 150', '2012-07-01'),
-(9, 'The Dirty Nil', 'TheDirtyNil.jpg', 'fake@fake.com', '000-0000', 'Rock and Roll', NULL, 1, 'Weezer', 'Single Mothers', 'Availability: Any\r\nPrevious Deals: $50\r\nDraw: 30', '2012-06-19'),
-(10, 'TV Freaks', 'TVFreaks.jpg', 'fake@fake.com', '000-0000', 'Punk', NULL, 1, 'unknown', 'Single Mothers', 'Availability: Unknown\r\nPrevious Deals: $225\r\nDraw: 100', '2012-06-01'),
-(11, 'Teenage Kicks', 'TeenageKicks.jpg', 'fake@fake.com', '000-0000', 'Rock and Roll', NULL, 1, 'Creedence Clearwater Revival', 'The Balconies', 'Availability: Unknown\r\nPrevious Deals: $200 + 50%, $200\r\nDraw: 75', '2012-06-01'),
-(12, 'METZ', 'Metz.jpg', 'fake@fake.com', '000-0000', 'Punk', NULL, 1, 'unknown', NULL, 'Availability: Unknown\r\nPrevious Deals: None', '2012-07-01');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pairings`
---
-
-CREATE TABLE IF NOT EXISTS `pairings` (
+-- ----------------------------
+-- Table structure for `pairings`
+-- ----------------------------
+DROP TABLE IF EXISTS `pairings`;
+CREATE TABLE `pairings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `band_id` int(11) NOT NULL,
   `band2_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
+-- ----------------------------
+-- Records of pairings
+-- ----------------------------
 
---
--- Table structure for table `shows`
---
-
-CREATE TABLE IF NOT EXISTS `shows` (
+-- ----------------------------
+-- Table structure for `shows`
+-- ----------------------------
+DROP TABLE IF EXISTS `shows`;
+CREATE TABLE `shows` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `date` datetime NOT NULL,
   `venue` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `shows`
---
+-- ----------------------------
+-- Records of shows
+-- ----------------------------
+INSERT INTO `shows` VALUES ('1', '2012-07-05 00:00:00', '3');
 
-INSERT INTO `shows` (`id`, `date`, `venue`) VALUES
-(1, '2012-07-05 00:00:00', 3);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `shows_bands`
---
-
-CREATE TABLE IF NOT EXISTS `shows_bands` (
+-- ----------------------------
+-- Table structure for `shows_bands`
+-- ----------------------------
+DROP TABLE IF EXISTS `shows_bands`;
+CREATE TABLE `shows_bands` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `show_id` int(11) NOT NULL,
   `band_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `shows_bands`
---
+-- ----------------------------
+-- Records of shows_bands
+-- ----------------------------
+INSERT INTO `shows_bands` VALUES ('1', '1', '8');
+INSERT INTO `shows_bands` VALUES ('2', '1', '9');
 
-INSERT INTO `shows_bands` (`id`, `show_id`, `band_id`) VALUES
-(1, 1, 8),
-(2, 1, 9);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `venues`
---
-
-CREATE TABLE IF NOT EXISTS `venues` (
+-- ----------------------------
+-- Table structure for `venues`
+-- ----------------------------
+DROP TABLE IF EXISTS `venues`;
+CREATE TABLE `venues` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(200) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `venues`
---
-
-INSERT INTO `venues` (`id`, `name`) VALUES
-(1, 'The Brass'),
-(2, 'APK Live'),
-(3, 'Call the Office');
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+-- ----------------------------
+-- Records of venues
+-- ----------------------------
+INSERT INTO `venues` VALUES ('1', 'The Brass');
+INSERT INTO `venues` VALUES ('2', 'APK Live');
+INSERT INTO `venues` VALUES ('3', 'Call the Office');

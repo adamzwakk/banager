@@ -28,7 +28,7 @@
 					for(x in tags){
 						newtags.push('.'+tags[x]);
 					}
-					tags = newtags.join();
+					tags = newtags.join('');
 				} else {
 					var tags = "*";
 				}
@@ -94,7 +94,7 @@
 		<div class="header">
 			<h1><a href="<?php echo site_url(); ?>">Banager!</a></h1>
 			<form name="searchF" class="form-search">
-				<input type="text" name="search" class="span11 input-xlarge" placeholder="Search by name/genre/tag..." />
+				<input type="text" name="search" class="span11 input-xlarge" placeholder="Search by name/genre/location/tag..." />
 				<input type="submit" name="searchsub" class="btn" value="Search!" ?>
 			</form>
 			Location: <a href="#" class="btn btn-info allBands">All</a> <a href="#" class="btn btn-info localBand">Local</a> <a href="#" class="btn btn-info touringBand">Touring</a>
@@ -107,7 +107,7 @@
 		<br/>
 		<div class="bandList">
 			<?php foreach($bands as $band){ ?>
-				<div class="element <?php echo strtolower($band->name); ?> <?php if($band->tags != ''){ echo $band->tags; } ?> <?php if($band->localtouring == 0){ echo 'local'; } else { echo 'touring'; } ?> <?php echo strtolower($band->genre); ?>">
+				<div class="element <?php if(isset($band->location)){ echo strtolower($band->location); } ?> <?php echo strtolower($band->name); ?> <?php if($band->tags != ''){ echo strtolower($band->tags); } ?> <?php if($band->localtouring == 0){ echo 'local'; } else { echo 'touring'; } ?> <?php echo strtolower($band->genre); ?>">
 					<a href="#" class="bandClick" data-id="<?php echo $band->id; ?>">
 						<?php echo $band->name; ?></td>
 						<span class="miniInfo">
@@ -121,7 +121,7 @@
 		</div>
 		<div id="stats">
 			<strong>Total Bands:</strong> <?php echo count($bands); ?> <strong>Total Shows:</strong> <?php echo count($shows); ?> <strong>Most Popular Band:</strong> <?php echo $mostpopular->name; ?><br/>
-			Email <a href="mailto:shamist@gmail.com">this dude</a> if you have any problems
+			Email <a href="mailto:shamist@gmail.com&subject=I need help with Banager">this dude</a> if you have any problems
 		</div>
 	</div>
 </body>

@@ -31,6 +31,9 @@ class Band_model extends CI_Model {
 			'tags' => $this->input->post('tags'),
 			'soundslike' => $this->input->post('soundslike'),
 			'homies' => $this->input->post('homies'),
+			'location' => $this->input->post('location'),
+			'bandcamp' => $this->input->post('bandcamp'),
+			'website' => $this->input->post('website'),
 			'notes' => $this->input->post('notes')
 		);
 		$data['localtouring'] = ($this->input->post('localtouring') == 'touring') ? 1 : 0;

@@ -40,6 +40,18 @@
 				<td><?php echo form_input(array('name'=>'homies','value'=>$band->homies, 'class'=>'span6')); ?></td>
 			</tr>
 			<tr>
+				<td><strong>Location: </strong></td>
+				<td><?php echo form_input(array('name'=>'location','value'=>$band->location, 'class'=>'span6')); ?></td>
+			</tr>
+			<tr>
+				<td><strong>Bandcamp: </strong></td>
+				<td><?php echo form_input(array('name'=>'bandcamp','value'=>$band->bandcamp, 'class'=>'span6')); ?></td>
+			</tr>
+			<tr>
+				<td><strong>Website: </strong></td>
+				<td><?php echo form_input(array('name'=>'website','value'=>$band->website, 'class'=>'span6')); ?></td>
+			</tr>
+			<tr>
 				<td><strong>Notes: </strong></td>
 				<td><?php echo form_textarea(array('name'=>'notes','value'=>$band->notes, 'class'=>'span6')); ?></td>
 			</tr>
